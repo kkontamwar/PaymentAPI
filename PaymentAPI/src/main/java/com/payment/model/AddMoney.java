@@ -15,22 +15,40 @@ public class AddMoney implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="fromUser")
-	public FromUser fromUser;
-	@Column(name="toUser")
-	public ToUser toUser;
-	public FromUser getFromUser() {
-		return fromUser;
-	}
-	public void setFromUser(FromUser fromUser) {
-		this.fromUser = fromUser;
-	}
-	public ToUser getToUser() {
-		return toUser;
-	}
-	public void setToUser(ToUser toUser) {
-		this.toUser = toUser;
-	}
+	@Column(name="fromAccountNumber")
+	private String fromAccountNumber;
+		
+	@Column(name="toAccountNumber")
+	private String toAccountNumber;
+
+	@Column(name="amount")
+	private Long amount;
 	
+	@Column(name="description")
+	private String description;
 	
+	public String getToAccountNumber() {
+		return toAccountNumber;
+	}
+	public void setToAccountNumber(String toAccountNumber) {
+		this.toAccountNumber = toAccountNumber;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getFromAccountNumber() {
+		return fromAccountNumber;
+	}
+	public void setFromAccountNumber(String fromAccountNumber) {
+		this.fromAccountNumber = fromAccountNumber;
+	}
+	public Long getAmount() {
+		return amount;
+	}
+	public void setAmount(Long amount) {
+		this.amount = amount;
+	}
 }

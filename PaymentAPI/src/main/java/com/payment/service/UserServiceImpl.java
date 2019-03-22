@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.payment.exception.ResourceNotFoundException;
 import com.payment.model.Account;
 import com.payment.model.AddMoney;
+import com.payment.model.Transactions;
 import com.payment.model.User;
 import com.payment.repository.AccountRepository;
+import com.payment.repository.TransactionRepository;
 import com.payment.repository.UserRepository;
 
 @Service
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	AccountRepository accRepo;
+	
+	@Autowired
+	TransactionRepository trRepo;
 	
 	@Override
 	public List<User> getAllUsers() {
@@ -48,8 +53,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String addMoney(AddMoney addMoney) throws NumberFormatException, ResourceNotFoundException {
-		String fromAccountNumber= addMoney.getFromUser().getAccountNumber();
-		Long amount=addMoney.getFromUser().getAmount();
+		String fromAccountNumber= addMoney.getFromAccountNumber();
+		Long amount=addMoney.getAmount();
 		Account fromAccount=accRepo.findById(new Long(fromAccountNumber)).orElseThrow(() -> new com.payment.exception.ResourceNotFoundException("user not found for this id"));
 		long balance=fromAccount.getBalance();
 		
@@ -62,7 +67,7 @@ public class UserServiceImpl implements UserService {
 		long newbalance=balance-amount;
 		fromAccount.setBalance(newbalance);
 		
-		String toAccountNumber=addMoney.getToUser().getAccountNumber();
+		String toAccountNumber=addMoney.getToAccountNumber();
 		Account toAccount=accRepo.findById(new Long(toAccountNumber)).orElseThrow(() -> new com.payment.exception.ResourceNotFoundException("user not found for this id"));
 		long bal = toAccount.getBalance();
 		long creditedBal= bal+amount;
@@ -70,9 +75,19 @@ public class UserServiceImpl implements UserService {
 		
 		accRepo.save(fromAccount);
 		accRepo.save(toAccount);
+
+		Transactions tr= new Transactions();
+		tr.setAccountNumber(toAccountNumber);
+		tr.setBalance(creditedBal);
+		tr.setCredit(amount);
+		tr.setDebit(0L);
+		tr.setTransactionDate(""+System.currentTimeMillis());
+		tr.setTransactionDescription("Loan Amount");
+		tr.setTransactionStatus("Success");
 		
-		return addMoney.fromUser.getAmount()+" Rs. Transfered to Account Number :"+addMoney.getToUser().getAccountNumber();
-		//.getAcct().getAcctNumber();
+		trRepo.save(tr);
+		return addMoney.getAmount()+" Rs. Transfered to Account Number :"+addMoney.getToAccountNumber();
+				
 	}
 
 	

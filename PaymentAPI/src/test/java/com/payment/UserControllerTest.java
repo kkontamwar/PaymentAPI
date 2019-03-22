@@ -22,9 +22,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.payment.controller.UserController;
 import com.payment.model.AddMoney;
-import com.payment.model.FromUser;
-import com.payment.model.ToUser;
 import com.payment.model.User;
+import com.payment.service.AccountService;
+import com.payment.service.TransactionService;
 import com.payment.service.UserService;
 
 @RunWith(SpringRunner.class)
@@ -37,6 +37,13 @@ public class UserControllerTest {
 		@MockBean
 		private UserService userService;
 		
+		@MockBean
+		private AccountService accService;
+		
+		@MockBean
+		private TransactionService trService;
+		
+		
 		List<User> userlist;
 		User u1;
 		AddMoney a1;
@@ -47,13 +54,9 @@ public class UserControllerTest {
 			u1= new User(1L,"abc","abc","abc@gmail.com","1234");
 			a1= new AddMoney();
 			
-			FromUser fu= new FromUser();
-			fu.setAccountNumber("14");
-			fu.setAmount(1200L);
-			ToUser tu=new ToUser();
-			tu.setAccountNumber("13");
-			a1.setFromUser(fu);
-			a1.setToUser(tu);
+			a1.setFromAccountNumber("14");
+			a1.setAmount(200L);
+			a1.setToAccountNumber("13");
 			
 			User u2= new User(1L,"xyz","zyx","xyz@gmail.com","12345");
 			userlist.add(u1);

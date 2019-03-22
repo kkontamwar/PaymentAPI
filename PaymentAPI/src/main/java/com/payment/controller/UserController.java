@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.payment.exception.ResourceNotFoundException;
+import com.payment.model.Account;
 import com.payment.model.AddMoney;
+import com.payment.model.Transactions;
 import com.payment.model.User;
 import com.payment.repository.UserRepository;
+import com.payment.service.AccountService;
+import com.payment.service.TransactionService;
 import com.payment.service.UserService;
 
 @RestController
@@ -28,7 +32,23 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AccountService accountService;
+	
+	@Autowired
+	TransactionService trService;
 
+	@GetMapping("/Accounts")
+	public String getAllAccounts(){
+		List<Account> payeeAccounts=accountService.getAllAccounts();
+		String accountList="[";
+		for(Account a : payeeAccounts) {
+			accountList+=a.getAcctNumber().toString()+"\n,";
+		}
+		
+		return accountList+"]";
+	}
 	
 	@GetMapping("/Users")
 	public List<User> getAllUsers() {
@@ -60,11 +80,17 @@ public class UserController {
 
 	}
 	
-	@PostMapping("/UserAddMoney")
+	@PostMapping("/Transact")
 	public String addMoney(@RequestBody AddMoney addMoney) throws NumberFormatException, ResourceNotFoundException
 	{
 		String response=userService.addMoney(addMoney);
 		
 		return response;
+	}
+	
+	@GetMapping("/Transactions")
+	public List<Transactions> getAllTransactions(){
+		List<Transactions> trList= trService.getAllTransactions();
+		return trList;
 	}
 }
