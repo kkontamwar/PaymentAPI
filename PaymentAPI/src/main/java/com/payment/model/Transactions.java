@@ -26,91 +26,91 @@ public class Transactions implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="TRANSACTION_ID")
-	public Long transactionID;
+	public Long TransactionID;
 	
 	@Column(name="ACCOUNT_NUMBER")
-	public String accountNumber;
+	public String AccountNumber;
 	
 	@Column(name="TRANSACTION_DATE")
-	public String transactionDate;
+	public String TransactionDate;
 	
 	@Column(name="CREDIT")
-	public Long credit;
+	public Long Credit;
 	
 	@Column(name="DEBIT")
-	public Long debit;
+	public Long Debit;
 	
 	@Column(name="BALANCE")
-	public Long balance;
+	public Long Balance;
 	
 	@Column(name="TRANSACTION_STATUS")
-	public String transactionStatus;
+	public String TransactionStatus;
 	
 	@Column(name="TRANSACTION_DESCRIPTION")
-	public String transactionDescription;
+	public String TransactionDescription;
 
 	public Long getTransactionID() {
-		return transactionID;
+		return TransactionID;
 	}
 
 	public void setTransactionID(Long transactionID) {
-		this.transactionID = transactionID;
+		this.TransactionID = transactionID;
 	}
 
 	public String getAccountNumber() {
-		return accountNumber;
+		return AccountNumber;
 	}
 
 	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
+		this.AccountNumber = accountNumber;
 	}
 
 	public String getTransactionDate() {
-		return transactionDate;
+		return TransactionDate;
 	}
 
 	public void setTransactionDate(String transactionDate) {
-		this.transactionDate = transactionDate;
+		this.TransactionDate = transactionDate;
 	}
 
 	public Long getCredit() {
-		return credit;
+		return Credit;
 	}
 
 	public void setCredit(Long credit) {
-		this.credit = credit;
+		this.Credit = credit;
 	}
 
 	public Long getDebit() {
-		return debit;
+		return Debit;
 	}
 
 	public void setDebit(Long debit) {
-		this.debit = debit;
+		this.Debit = debit;
 	}
 
 	public Long getBalance() {
-		return balance;
+		return Balance;
 	}
 
 	public void setBalance(Long balance) {
-		this.balance = balance;
+		this.Balance = balance;
 	}
 
 	public String getTransactionStatus() {
-		return transactionStatus;
+		return TransactionStatus;
 	}
 
 	public void setTransactionStatus(String transactionStatus) {
-		this.transactionStatus = transactionStatus;
+		this.TransactionStatus = transactionStatus;
 	}
 
 	public String getTransactionDescription() {
-		return transactionDescription;
+		return TransactionDescription;
 	}
 
 	public void setTransactionDescription(String transactionDescription) {
-		this.transactionDescription = transactionDescription;
+		this.TransactionDescription = transactionDescription;
 	}
 	
 	
