@@ -9,5 +9,4 @@ import com.payment.model.Account;
 public interface AccountService {
 
 	public List<Account> getAllAccounts();
-	
 }

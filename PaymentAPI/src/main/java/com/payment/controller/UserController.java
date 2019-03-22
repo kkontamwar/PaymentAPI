@@ -43,10 +43,14 @@ public class UserController {
 	public String getAllAccounts(){
 		List<Account> payeeAccounts=accountService.getAllAccounts();
 		String accountList="[";
+		int i=0;
 		for(Account a : payeeAccounts) {
-			accountList+="\n"+a.getAcctNumber().toString()+",";
-		}
-		
+			accountList+="\n"+a.getAcctNumber().toString();
+			if(i<payeeAccounts.size()-1) {
+				accountList+=",";
+			}
+			i++;
+		}		
 		return accountList+"\n]";
 	}
 	
@@ -67,7 +71,7 @@ public class UserController {
 		//int count=
 		User user1=userService.addUser(user);
 		 
-		 if (user1!=null) return "user added successfully"; 
+		 if (user1!=null) return "User Added successfully";//+user1.getAcct().getAcctNumber(); 
 				 //ResponseEntity.noContent().build();
 		 
 		 else return "user addition failed";

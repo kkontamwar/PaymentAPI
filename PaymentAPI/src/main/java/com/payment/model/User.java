@@ -1,5 +1,7 @@
 package com.payment.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,19 +9,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="User")
-public class User {
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;	
 	private String firstName;
 	private String lastName;
 	private String emailId;
 	private String phoneNumber;
 	
+	
+	 
 	public User() {
 		
 	}
@@ -35,10 +44,10 @@ public class User {
 	}
 	
 	/*
-	 * @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =
-	 * "user")
+	 * @OneToOne(fetch = FetchType.LAZY,mappedBy="acctNumber",cascade =
+	 * CascadeType.ALL)
 	 * 
-	 * @Column(name="acct") private Account acct;
+	 * @Column(name="ACCT_ID") private Account acct;
 	 */
 	private boolean isSelf;
 	
@@ -51,10 +60,11 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	/*
-	 * public Account getAcct() { return acct; } public void setAcct(Account acct) {
-	 * this.acct = acct; }
+	 * public Account getAcct() { return acct; }
+	 * 
+	 * public void setAcct(Account acct) { this.acct = acct; }
 	 */
 	@Column(name="ISSELF")
 	public boolean isSelf() {

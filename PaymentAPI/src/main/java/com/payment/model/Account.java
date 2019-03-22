@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -25,11 +26,10 @@ public class Account implements Serializable{
 	
 	@Column(name="BALANCE")
 	private Long balance;
-
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", nullable = false)
-    private User user;
 	
+	public Account() {
+		
+	}
 	public Long getAcctNumber() {
 		return acctNumber;
 	}
