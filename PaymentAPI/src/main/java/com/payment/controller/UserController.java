@@ -44,10 +44,10 @@ public class UserController {
 		List<Account> payeeAccounts=accountService.getAllAccounts();
 		String accountList="[";
 		for(Account a : payeeAccounts) {
-			accountList+=a.getAcctNumber().toString()+"\n,";
+			accountList+="\n"+a.getAcctNumber().toString()+",";
 		}
 		
-		return accountList+"]";
+		return accountList+"\n]";
 	}
 	
 	@GetMapping("/Users")

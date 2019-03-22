@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Table(name="User")
 public class User {
 
-	
 	private Long id;	
 	private String firstName;
 	private String lastName;
@@ -35,10 +34,12 @@ public class User {
 		this.phoneNumber=phoneNumber;
 	}
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-	@Column(name="acct")
-	private Account acct;
-	
+	/*
+	 * @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =
+	 * "user")
+	 * 
+	 * @Column(name="acct") private Account acct;
+	 */
 	private boolean isSelf;
 	
 	@Id
@@ -51,9 +52,10 @@ public class User {
 		this.id = id;
 	}
 
-	 public Account getAcct() { return acct; } public void setAcct(Account acct) {
-	 this.acct = acct; }
-	 
+	/*
+	 * public Account getAcct() { return acct; } public void setAcct(Account acct) {
+	 * this.acct = acct; }
+	 */
 	@Column(name="ISSELF")
 	public boolean isSelf() {
 		return isSelf;
@@ -93,8 +95,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId+", phoneNumber="+phoneNumber+", accountNumber ="+acct
-				+ "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId+", phoneNumber="+phoneNumber+ "]";
+				//", accountNumber ="+acct
+				
 	}
 	
 }
