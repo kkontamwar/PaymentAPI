@@ -14,13 +14,14 @@ public class AddMoney implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	@Column(name="fromAccountNumber")
 	private String fromAccountNumber;
 		
 	@Column(name="toAccountNumber")
 	private String toAccountNumber;
 
+	@Id
 	@Column(name="amount")
 	private Long amount;
 	

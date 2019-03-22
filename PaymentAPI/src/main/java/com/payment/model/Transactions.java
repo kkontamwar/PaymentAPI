@@ -26,7 +26,7 @@ public class Transactions implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="TRANSACTION_ID")
-	public String transactionID;
+	public Long transactionID;
 	
 	@Column(name="ACCOUNT_NUMBER")
 	public String accountNumber;
@@ -49,11 +49,11 @@ public class Transactions implements Serializable {
 	@Column(name="TRANSACTION_DESCRIPTION")
 	public String transactionDescription;
 
-	public String getTransactionID() {
+	public Long getTransactionID() {
 		return transactionID;
 	}
 
-	public void setTransactionID(String transactionID) {
+	public void setTransactionID(Long transactionID) {
 		this.transactionID = transactionID;
 	}
 
